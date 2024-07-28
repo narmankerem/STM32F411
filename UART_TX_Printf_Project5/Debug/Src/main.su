@@ -1,0 +1,6 @@
+../Src/main.c:22:5:__io_putchar	16	static
+../Src/main.c:28:5:main	8	static
+../Src/main.c:42:6:uart2TX_init	8	static
+../Src/main.c:73:6:uart2_write	16	static
+../Src/main.c:81:13:uart_set_baudrate	24	static
+../Src/main.c:86:17:compute_UART_bd	16	static
