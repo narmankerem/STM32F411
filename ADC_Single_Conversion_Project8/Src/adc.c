@@ -1,4 +1,4 @@
-#include "stm32f4xx.h"
+#include "stm32f411xe.h"
 #include "adc.h"
 
 #define GPIOAEN		    (1U<<0)
@@ -36,7 +36,7 @@ void pa1_adc_init(void)
 }
 
 
-void start_converstion(void)
+void start_conversion(void)
 {
 	/*Start adc conversion*/
 	ADC1->CR2 |= CR2_SWSTART;

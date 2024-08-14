@@ -69,6 +69,39 @@ void uart2_RX_TX_init(void)
 	USART2->CR1 |= CR1_UE;
 }
 
+void uart2_tx_init(void)
+{
+	/****************Configure UART GPIO pin***************/
+	/*Enable clock access to GPIOA */
+	RCC->AHB1ENR |= GPIOAEN;
+
+	/*Set PA2 mode to alternate function mode*/
+	GPIOA->MODER &=~(1U<<4);
+	GPIOA->MODER |= (1U<<5);
+
+	/*Set PA2 alternate function type to UART_TX (AF07)*/
+	GPIOA->AFR[0] |= (1U<<8);
+	GPIOA->AFR[0] |= (1U<<9);
+	GPIOA->AFR[0] |= (1U<<10);
+	GPIOA->AFR[0] &= ~(1U<<11);
+
+
+	/****************Configure UART module ***************/
+	/*Enable clock access to uart2 */
+	RCC->APB1ENR |= UART2EN;
+
+	/*Configure BaudRate*/
+	uart_set_baudrate(USART2, APB1_CLK, BAUDRATE);
+
+	/*Configure the transfer direction*/
+	 USART2->CR1 =  CR1_TE;
+
+	/*Enable UART module*/
+	 USART2->CR1 |= CR1_UE;
+
+
+}
+
 char uart2_read(void)
 {
 	/*Make sure receive data register is not empty*/

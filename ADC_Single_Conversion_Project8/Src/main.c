@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
-#include "stm32f4xx.h"
+#include "stm32f411xe.h"
 #include "uart.h"
 #include "adc.h"
 
@@ -19,7 +19,7 @@ int main(void)
 	while(1)
 	{
 
-		start_converstion();
+		start_conversion();
 		sensor_value =  adc_read();
 		printf("Sensor value : %d \n\r",(int)sensor_value);
 	}
